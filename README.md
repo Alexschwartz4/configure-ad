@@ -26,31 +26,37 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 - Step 1: Setup Resources in Azure
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 Create the Domain Controller VM (Windows Server 2022) named “DC-1”
- ![Virtual machines](https://github.com/user-attachments/assets/922993ae-51a6-4c07-aeb5-0febe64889e8)
-
+ </p>
+<img src="https://imgur.com/AfsY0Rp.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
  </p>
 Set Domain Controller’s NIC Private IP address to be static
  </p>
+ <img src="https://imgur.com/dkd3YDU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+ </p>
 Create the Client VM (Windows 10) named “Client-1”. Use the same Resource Group and Vnet of DC-1
  </p>
-Ensure that both VMs are in the same Vnet (you can check the topology with Network Watcher
-</p>
+  <img src="https://imgur.com/QJptNyi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  </p>
 <br />
 - Step 2: Ensure Connectivity between the client and Domain Controller
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Login to Client-1 with Remote Desktop and ping DC-1’s private IP address with ping -t <ip address> (perpetual ping)
    </p>
-Login to the Domain Controller and enable ICMPv4 in on the local windows Firewall
+ <img src="https://imgur.com/zlhA8Rw.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  </p>
+ Login to the Domain Controller and enable ICMPv4 in on the local windows Firewall
    </p>
+  <img src="https://imgur.com/u0f30WX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  </p>
 Check back at Client-1 to see the ping succeed
 </p>
+   <img src="https://imgur.com/eKOqPsx.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+  </p>
 <br />
 <h2>Deployment and Configuration Steps</h2>
 
