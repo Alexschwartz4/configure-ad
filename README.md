@@ -30,13 +30,12 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </p>
 <p>
 Create the Domain Controller VM (Windows Server 2022) named “DC-1”
- </p>
+ ![Virtual machines](https://github.com/user-attachments/assets/922993ae-51a6-4c07-aeb5-0febe64889e8)
 
-Take note of the Resource Group and Virtual Network (Vnet) that get created at this time
  </p>
 Set Domain Controller’s NIC Private IP address to be static
  </p>
-Create the Client VM (Windows 10) named “Client-1”. Use the same Resource Group and Vnet that was created in Step 1.a
+Create the Client VM (Windows 10) named “Client-1”. Use the same Resource Group and Vnet of DC-1
  </p>
 Ensure that both VMs are in the same Vnet (you can check the topology with Network Watcher
 </p>
