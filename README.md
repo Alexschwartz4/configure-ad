@@ -30,9 +30,14 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </p>
 <p>
 Create the Domain Controller VM (Windows Server 2022) named “DC-1”
+ </p>
+
 Take note of the Resource Group and Virtual Network (Vnet) that get created at this time
+ </p>
 Set Domain Controller’s NIC Private IP address to be static
+ </p>
 Create the Client VM (Windows 10) named “Client-1”. Use the same Resource Group and Vnet that was created in Step 1.a
+ </p>
 Ensure that both VMs are in the same Vnet (you can check the topology with Network Watcher
 </p>
 <br />
@@ -42,7 +47,9 @@ Ensure that both VMs are in the same Vnet (you can check the topology with Netwo
 </p>
 <p>
 Login to Client-1 with Remote Desktop and ping DC-1’s private IP address with ping -t <ip address> (perpetual ping)
+   </p>
 Login to the Domain Controller and enable ICMPv4 in on the local windows Firewall
+   </p>
 Check back at Client-1 to see the ping succeed
 </p>
 <br />
@@ -55,7 +62,9 @@ Check back at Client-1 to see the ping succeed
 </p>
 <p>
 Login to DC-1 and install Active Directory Domain Services
+   </p>
 Promote as a DC: Setup a new forest as mydomain.com (can be anything, just remember what it is)
+ </p>
 Restart and then log back into DC-1 as user: mydomain.com\labuser
 
 </p>
@@ -67,10 +76,15 @@ Restart and then log back into DC-1 as user: mydomain.com\labuser
 </p>
 <p>
 In Active Directory Users and Computers (ADUC), create an Organizational Unit (OU) called “_EMPLOYEES”
+   </p>
 Create a new OU named “_ADMINS”
+ </p>
 Create a new employee named “Jane Doe” (same password) with the username of “jane_admin”
+ </p>
 Add jane_admin to the “Domain Admins” Security Group
+ </p>
 Log out/close the Remote Desktop connection to DC-1 and log back in as “mydomain.com\jane_admin”
+ </p>
 User jane_admin as your admin account from now on
 </p>
 <br />
@@ -80,9 +94,13 @@ User jane_admin as your admin account from now on
 </p>
 <p>
 From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP address
+   </p>
 From the Azure Portal, restart Client-1
+ </p>
 Login to Client-1 (Remote Desktop) as the original local admin (labuser) and join it to the domain (computer will restart)
+ </p>
 Login to the Domain Controller (Remote Desktop) and verify Client-1 shows up in Active Directory Users and Computers (ADUC) inside the “Computers” container on the root of the domain
+</p>
 Create a new OU named “_CLIENTS” and drag Client-1 into there (Step is not really necessary, just for organizational purposes. I guess I skipped this in the lab!)
 </p>
 <br />
@@ -92,9 +110,13 @@ Create a new OU named “_CLIENTS” and drag Client-1 into there (Step is not r
 </p>
 <p>
 Log into Client-1 as mydomain.com\jane_admin and open system properties
+  </p>
 Click “Remote Desktop”
+</p>
 Allow “domain users” access to remote desktop
+</p>
 You can now log into Client-1 as a normal, non-administrative user now
+</p>
 Normally you’d want to do this with Group Policy that allows you to change MANY systems at once (maybe a future lab)
 </p>
 <br />
@@ -104,10 +126,15 @@ Normally you’d want to do this with Group Policy that allows you to change MAN
 </p>
 <p>
 Login to DC-1 as jane_admin
+  </p>
 Open PowerShell_ise as an administrator
+</p>
 Create a new File and paste the contents of the script into it (https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1)
+</p>
 Run the script and observe the accounts being created
+</p>
 When finished, open ADUC and observe the accounts in the appropriate OU
+</p>
 attempt to log into Client-1 with one of the accounts (take note of the password in the script)
 </p>
 <br />
